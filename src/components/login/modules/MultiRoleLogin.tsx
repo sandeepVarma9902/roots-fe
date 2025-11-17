@@ -121,7 +121,7 @@ export default function MultiRoleLoginPages() {
             </div>
 
             {/* Success Alert */}
-            {loginAttempt?.success && (
+            {/* {loginAttempt?.success && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg transform transition-all duration-300 animate-pulse">
                 <div className="flex items-center">
                   <span className="text-green-500 text-xl mr-3">✅</span>
@@ -133,7 +133,7 @@ export default function MultiRoleLoginPages() {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
 
             {/* Login Form */}
             <div className="space-y-6">

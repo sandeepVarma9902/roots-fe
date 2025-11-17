@@ -1,7 +1,7 @@
 import type { OTPState } from "../types/LoginTypes";
-import type { FormData, FormErrors } from "../types/signupTypes";
+import type { SignupFormData, FormErrors } from "../types/signupTypes";
 
-export const useFormValidation = (formData: FormData, otpState: OTPState, isTermsAgreed: boolean) => {
+export const useFormValidation = (formData: SignupFormData, otpState: OTPState, isTermsAgreed: boolean) => {
     const validateForm = (): FormErrors => {
       const newErrors: FormErrors = {};
   
@@ -24,6 +24,34 @@ export const useFormValidation = (formData: FormData, otpState: OTPState, isTerm
         newErrors.phone = 'Phone number is required';
       } else if (!/^[+]?[\d\s\-\(\)]{10,15}$/.test(formData.phone)) {
         newErrors.phone = 'Invalid phone number';
+      }
+
+       // Address validation
+       if (!formData.address?.trim()) {
+        newErrors.address = 'Address is required';
+      } else if (formData.address?.trim().length < 2 || formData.address?.trim().length > 50) {
+        newErrors.fullName = 'Invalid address';
+      }
+
+       // City validation
+       if (!formData.city?.trim()) {
+        newErrors.city = 'City is required';
+      } else if (formData.city?.trim().length < 2 || formData.city?.trim().length > 50) {
+        newErrors.city = 'Invalid city';
+      }
+
+      // Stqte validation
+      if (!formData.state?.trim()) {
+        newErrors.state = 'State is required';
+      } else if (formData.state?.trim().length < 2 || formData.state?.trim().length > 50) {
+        newErrors.city = 'Invalid state';
+      }
+
+      // Zipcode validation
+      if (!formData.zipcode?.trim()) {
+        newErrors.zipcode = 'Zipcode is required';
+      } else if (formData.zipcode?.trim().length < 2 || formData.zipcode?.trim().length > 50) {
+        newErrors.city = 'Invalid zipcode';
       }
   
       // Password validation

@@ -21,15 +21,15 @@ export  const InputField: React.FC<InputFieldProps> = ({
           {label}
         </label>
         <div className="relative">
-          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">
+          {icon && <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">
             {icon}
-          </span>
+          </span>}
           <input
             type={showToggle && isToggled ? 'text' : type}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder}
-            className={`w-full pl-12 ${showToggle ? 'pr-12' : verified ? 'pr-12' : 'pr-4'} py-3 border rounded-lg ${focusColor} outline-none transition-all duration-200 ${
+            className={`w-full ${icon ? "pl-12" : "pl-4"} ${showToggle ? 'pr-12' : verified ? 'pr-12' : 'pr-4'} py-3 border rounded-lg ${focusColor} outline-none transition-all duration-200 ${
               error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'
             }`}
           />
