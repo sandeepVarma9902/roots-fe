@@ -6,6 +6,8 @@ import { AuthProvider } from './contexts/AuthProvider';
 
 import Signup from './components/login/modules/Signup';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './components/home/indexHome';
 
 export default function App() {
   return (
@@ -21,6 +23,16 @@ export default function App() {
         <Route path="/signup/admin" element={<Signup/>} />
         
         {/* Protected Routes */}
+          <Route 
+          path="/home" 
+          element={
+            <Home />
+            // <ProtectedRoute 
+            //   element={<Home />} 
+            //   allowedRoles={['user']} 
+            // />
+          } 
+        />
         {/* <Route 
           path="/user/dashboard" 
           element={

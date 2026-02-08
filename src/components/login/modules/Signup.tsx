@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import type { FormData, FormErrors } from '../types/signupTypes';
+import type { FormErrors, SignupFormData } from '../types/signupTypes';
 import type { OTPState } from '../types/LoginTypes';
 import { useOTPTimer } from '../utils/UseOtpTimer';
 import { useFormValidation } from '../utils/UseFormValidation';
@@ -20,10 +20,14 @@ const roleConfigs = {
 };
 
 export default function Signup() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<SignupFormData>({
     fullName: '',
     email: '',
     phone: '',
+    city:"",
+    state:"",
+    address:"",
+    zipcode:"",
     password: '',
     confirmPassword: '',
   });
@@ -40,7 +44,7 @@ export default function Signup() {
 
 
 
-  const handleInputChange = (name: keyof FormData, value: string) => {
+  const handleInputChange = (name: keyof SignupFormData, value: string) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -289,7 +293,7 @@ export default function Signup() {
                   verified={otpState.email.verified}
                   focusColor={currentConfig.focusColor}
                 />
-                {validateEmail(formData?.email) &&  <OTPVerification
+                {!validateEmail(formData?.email) &&  <OTPVerification
                   type="email"
                   value={formData.email}
                   otpState={otpState.email}
@@ -314,7 +318,7 @@ export default function Signup() {
                 verified={otpState.phone.verified}
                 focusColor={currentConfig.focusColor}
               />
-              {validatePhone(formData?.phone) &&  <OTPVerification
+              {!validatePhone(formData?.phone) &&  <OTPVerification
                 type="phone"
                 value={formData.phone}
                 otpState={otpState.phone}
@@ -324,6 +328,47 @@ export default function Signup() {
                 loading={loading}
                 errors={errors}
               />}
+            </div>
+            <div>
+            <InputField
+                label="Address"
+                type="textArea"
+                value={formData.address ?? ""}
+                onChange={(value) => handleInputChange('address', value)}
+                placeholder="Enter your address"
+                error={errors.address}
+                focusColor={currentConfig.focusColor}
+              />
+            </div>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+            <InputField
+                label="City"
+                type="text"
+                value={formData.city ?? ""}
+                onChange={(value) => handleInputChange('city', value)}
+                placeholder="Enter your city"
+                error={errors.city}
+                focusColor={currentConfig.focusColor}
+              />
+
+            <InputField
+                label="state"
+                type="text"
+                value={formData.state ?? ""}
+                onChange={(value) => handleInputChange('state', value)}
+                placeholder="Enter your state"
+                error={errors.state}
+                focusColor={currentConfig.focusColor}
+              />
+            <InputField
+                label="zip code"
+                type="text"
+                value={formData.zipcode ?? ""}
+                onChange={(value) => handleInputChange('zipcode', value)}
+                placeholder="Enter your zip code"
+                error={errors.zipcode}
+                focusColor={currentConfig.focusColor}
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

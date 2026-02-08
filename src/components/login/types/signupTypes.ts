@@ -1,9 +1,13 @@
 import type { OTPState } from "./LoginTypes";
 
-export interface FormData {
+export interface SignupFormData {
     fullName: string;
     email: string;
     phone: string;
+    address?: string;
+    city?: string;
+    state?: string;
+    zipcode?: string;
     password: string;
     confirmPassword: string;
   }

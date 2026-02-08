@@ -48,7 +48,7 @@ export interface InputFieldProps {
   value: string;
   onChange: (value: string) => void;
   placeholder: string;
-  icon: string;
+  icon?: string;
   error: string | null;
   showToggle?: boolean;
   onToggle?: () => void;
