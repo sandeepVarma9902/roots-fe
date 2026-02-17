@@ -12,13 +12,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element, allowedRoles }
 
   // Show loading state while checking authentication
   if (loading) {
-    return (
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh' 
-      }}>
+    return (<div className="flex justify-center items-center h-[100vh]" >
+      
         <p>Loading...</p>
       </div>
     );

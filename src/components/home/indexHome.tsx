@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, User, Calendar, ChevronLeft, ChevronRight, MapPin, Star, X, CalendarDays } from 'lucide-react';
 import HomeFooter from '../footer/IndexFooter';
 import Activities from "../home/Activities";
@@ -6,9 +6,12 @@ import AdBlock from './Adblock';
 import Highlights from './Highlights';
 import Events from './Events';
 import CalenderEvents from './CalenderEvents';
+import { useNavigate } from 'react-router-dom';
+import { Navbar } from '../common/components/Navbar';
 
 
 const Home: React.FC = () => {
+  const navigate = useNavigate()
   const [selectedTab, setSelectedTab] = useState<string>('for you');
   const [selectedFilters, setSelectedFilters] = useState({
     delivery: false,
@@ -16,6 +19,7 @@ const Home: React.FC = () => {
     diaries: false,
   });
   const [expandedFilter, setExpandedFilter] = useState<string | null>(null);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
@@ -40,20 +44,7 @@ const Home: React.FC = () => {
               {/* <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 cursor-pointer hover:text-indigo-600" /> */}
             </div>
           </div>
-          <div className="flex gap-8 border-t border-gray-200">
-            {['For you', 'Food', 'Events', 'Activities', 'Blogs'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setSelectedTab(tab.toLowerCase())}
-                className={`py-4 px-2 font-semibold transition-all duration-300 border-b-2 ${selectedTab === tab.toLowerCase()
-                    ? 'text-indigo-600 border-indigo-600'
-                    : 'text-gray-600 border-transparent hover:text-indigo-600'
-                  }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+          <Navbar currentActiveTab="for you"/>
         </div>
       </header>
 

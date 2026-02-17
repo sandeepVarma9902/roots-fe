@@ -44,3 +44,10 @@ export const validateFullName = (fullName: string): string | undefined => {
     return errors;
   };
   
+
+  export const isEmpty = (value?: string) =>
+    !value || value.trim().length === 0;
+  
+  export const isLengthInvalid = (value: string, min: number, max: number) =>
+    value.trim().length < min || value.trim().length > max;
+  
